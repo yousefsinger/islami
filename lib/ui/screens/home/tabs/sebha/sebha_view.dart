@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:islami/ui/utils/app_styles.dart';
 import 'package:islami/ui/utils/asset_manager.dart';
@@ -10,8 +11,7 @@ class Sebha extends StatefulWidget {
   SebhaAnimation createState() => SebhaAnimation();
 }
 
-class SebhaAnimation extends State<Sebha>
-    with SingleTickerProviderStateMixin {
+class SebhaAnimation extends State<Sebha> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> _rotationAnimation;
   double currentAngle = 0.0;

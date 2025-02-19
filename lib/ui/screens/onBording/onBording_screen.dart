@@ -41,7 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       title: "Holy Quran Radio",
       image: "assets/images/onbording_5.png",
       description:
-      "You can listen to the Holy Quran Radio through the application for free and easily",
+          "You can listen to the Holy Quran Radio through the application for free and easily",
     ),
   ];
 
@@ -55,14 +55,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.initState();
     pageController.addListener(() {
       sellectedIndex = pageController.page?.toInt() ?? 0;
-      setState(() {
-
-      });
+      setState(() {});
     });
   }
 
   @override
-  Widget build(BuildContext context,) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Scaffold(
       backgroundColor: AppColors.black,
       body: Column(
@@ -71,10 +71,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Expanded(
             child: PageView.builder(
               controller: pageController,
-              itemBuilder: (context, index) =>
-                  onBordingPage(
-                    onboardingData: onBordingList[index],
-                  ),
+              itemBuilder: (context, index) => onBordingPage(
+                onboardingData: onBordingList[index],
+              ),
               itemCount: onBordingList.length,
             ),
           ),
@@ -82,17 +81,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             alignment: Alignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 16, horizontal: 8),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    if(sellectedIndex != 0)
+                    if (sellectedIndex != 0)
                       TextButton(
                         onPressed: () {
-                          pageController.animateToPage(
-                              sellectedIndex - 1, duration: Duration(
-                              milliseconds: 500), curve: Curves.fastOutSlowIn);
+                          pageController.animateToPage(sellectedIndex - 1,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.fastOutSlowIn);
                         },
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.transparent,
@@ -101,27 +100,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                         child: Text(
                           "Back",
-                        ),)
+                        ),
+                      )
                     else
                       const SizedBox(),
                     const Spacer(),
                     TextButton(
                         onPressed: () {
-                          if(sellectedIndex==4){
- _onBordingdDone();
+                          if (sellectedIndex == 4) {
+                            _onBordingdDone();
+                          } else {
+                            pageController.animateToPage(sellectedIndex + 1,
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.fastOutSlowIn);
                           }
-                          else
-                          { pageController.animateToPage(
-                          sellectedIndex + 1, duration: Duration(
-                          milliseconds: 500), curve: Curves.fastOutSlowIn);}
                         },
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.transparent,
                           foregroundColor: AppColors.primary,
                           textStyle: AppStyles.primaryBold16,
                         ),
-                        child: Text(sellectedIndex==4?"Finish":
-                          "Next",
+                        child: Text(
+                          sellectedIndex == 4 ? "Finish" : "Next",
                         ))
                   ],
                 ),
@@ -134,7 +134,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Index(isActive: sellectedIndex == 2),
                   Index(isActive: sellectedIndex == 3),
                   Index(isActive: sellectedIndex == 4),
-
                 ],
               )
             ],
@@ -144,9 +143,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  void _onBordingdDone()async {
-    SharedPreferences preferences=await SharedPreferences.getInstance();
-await preferences.setBool("firstTime", false);
-Navigator.pushNamed(context, Home.routeName);
+  void _onBordingdDone() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setBool("firstTime", false);
+    Navigator.pushNamed(context, Home.routeName);
   }
 }

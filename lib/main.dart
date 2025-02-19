@@ -9,7 +9,7 @@ import 'package:islami/ui/utils/constants.dart';
 import 'package:islami/ui/utils/shared_prefs_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Set<int> nums = {1, 2};
@@ -19,21 +19,22 @@ void main() async {
     Constants.suras.add(Sura(Constants.englishQuranSurahs[i],
         Constants.suraNames[i], Constants.versesNumber[i], "${i + 1}.txt", i));
   }
-  var isFirstTime=await _checkFirstTime();
+  var isFirstTime = await _checkFirstTime();
   runApp(ChangeNotifierProvider(
-      create: (_) => RecentSurasProvider(), child: MyApp(firstTime: isFirstTime)));
-
+      create: (_) => RecentSurasProvider(),
+      child: MyApp(firstTime: isFirstTime)));
 }
 
-Future<bool>_checkFirstTime() async {
-  SharedPreferences preferences=await SharedPreferences.getInstance();
-  var firstTime=preferences.getBool("firstTime")?? true;
+Future<bool> _checkFirstTime() async {
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  var firstTime = preferences.getBool("firstTime") ?? true;
   return firstTime;
 }
 
 class MyApp extends StatelessWidget {
   final bool firstTime;
-  const MyApp({required this.firstTime,super.key});
+
+  const MyApp({required this.firstTime, super.key});
 
   // This widget is the root of your application.
   @override
@@ -41,13 +42,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        OnboardingScreen.routeName: (_) =>  OnboardingScreen(),
+        OnboardingScreen.routeName: (_) => OnboardingScreen(),
         Home.routeName: (_) => const Home(),
         Splash.routeName: (_) => const Splash(),
         SuraDetails.routeName: (_) => const SuraDetails(),
         HadethDetails.routeName: (_) => const HadethDetails(),
       },
-      initialRoute: firstTime? OnboardingScreen.routeName:Home.routeName,
+      initialRoute: firstTime ? OnboardingScreen.routeName : Home.routeName,
     );
   }
 }

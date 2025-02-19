@@ -24,12 +24,12 @@ class onBordingPage extends StatelessWidget {
           SizedBox(
             height: 16,
           ),
-         if(onboardingData.description !=null)
-          Text(
-           onboardingData.description!,
-           textAlign: TextAlign.center,
-           style: AppStyles.primaryBold20,
-          ),
+          if (onboardingData.description != null)
+            Text(
+              onboardingData.description!,
+              textAlign: TextAlign.center,
+              style: AppStyles.primaryBold20,
+            ),
         ],
       ),
     );

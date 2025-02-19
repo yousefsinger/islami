@@ -5,7 +5,7 @@ class OnboardingData extends StatelessWidget {
   final String? description;
   final String image;
 
-   OnboardingData({
+  OnboardingData({
     super.key,
     required this.title,
     this.description,
@@ -16,9 +16,7 @@ class OnboardingData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-
-      ],
+      children: [],
     );
   }
 }
